@@ -17,7 +17,58 @@ dependencies = [
 ]
 dynamic = ["version"]
 
+[dependency-groups]
+dev = ["ruff>=0.14.7"]
+
 [project.scripts]
 aoc2025 = "aoc2025.main:app"
 
 [tool.setuptools_scm]
+
+[tool.ruff]
+line-length = 79
+src = ["src"]
+extend-include = ["*.pyi", "*.ipynb"]
+
+[tool.ruff.lint]
+extend-select = [
+    "W6",
+    "I",
+    "N80",
+    "S102",
+    "S108",
+    "S306",
+    "S307",
+    "S60",
+    "B",
+    "A",
+    "PT",
+    "PTH",
+    "PLE",
+    "PLW",
+    "NPY",
+    "PD",
+    "RUF",
+]
+ignore = [
+    "E74",
+    "F405",
+    "N803",
+    "N806",
+    "S603",
+    "S607",
+    "B008",
+    "B905",
+    "PTH123",
+    "PLW2901",
+    "NPY002",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"**/__init__.py" = [
+    "F401", # Imported but unused
+    "F403", # Wildcard imports
+]
+
+[tool.ruff.lint.isort]
+no-lines-before = ["local-folder"]

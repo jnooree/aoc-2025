@@ -1,4 +1,10 @@
 {
+  "[python]": {
+    "editor.codeActionsOnSave": {
+      "source.organizeImports.ruff": "always",
+    },
+  },
+  "editor.formatOnSave": true,
   "github.copilot.enable": {
     "python": false,
   },
