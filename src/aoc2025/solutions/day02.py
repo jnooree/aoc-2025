@@ -74,8 +74,9 @@ def _pt2_handle_range(r: range):
 
 
 def main(data: FileText):
-    ranges = [tuple(map(int, r.split("-"))) for r in data.read().split(",")]
-    ranges = [range(b, e + 1) for b, e in ranges]
+    ranges = np.loadtxt(data.read().split(","), dtype=np.int64, delimiter="-")
+    ranges[:, 1] += 1
+    ranges = [range(*be) for be in ranges]
 
     all_nums = [_pt1_handle_range(r) for r in ranges]
     print(sum(itertools.chain.from_iterable(all_nums)))
