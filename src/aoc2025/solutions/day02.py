@@ -9,11 +9,7 @@ def _repeat_segment(seg: int, n: int = 2):
 
 
 def _extract_segment(num: int, s: int, n: int = 2):
-    snum = str(num)
-    l = len(snum)
-    if l == s * n:
-        return int(snum[:s])
-    return 0
+    return num // 10 ** (s * (n - 1))
 
 
 def _handle_segment(r: range, s: int, n: int = 2):
