@@ -14,3 +14,21 @@ def main(data: FileText):
         axis=-1,
     )
     print(np.sum(fresh))
+
+    ranges[:, 1] += 1
+    ranges = np.sort(ranges, axis=0)
+
+    merged = []
+    current = range(*ranges[0])
+    for r in ranges[1:]:
+        if r[0] > current.stop:
+            merged.append(current)
+            current = range(*r)
+            continue
+
+        if r[1] > current.stop:
+            current = range(current.start, r[1])
+            continue
+    merged.append(current)
+
+    print(sum(map(len, merged)))
