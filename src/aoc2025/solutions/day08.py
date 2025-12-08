@@ -39,3 +39,24 @@ def main(data: FileText, n: int = 1000):
 
     lens = np.partition(list(map(len, comps.values())), len(comps) - 3)
     print(np.prod(lens[-3:]))
+
+    for i, j in idxs[n:]:
+        ci = comp_ids[i]
+        cj = comp_ids[j]
+        if ci == cj:
+            continue
+
+        icomp = comps[ci]
+        jcomp = comps[cj]
+        cnew, merged, cold, old = (
+            (cj, jcomp, ci, icomp)
+            if len(icomp) < len(jcomp)
+            else (ci, icomp, cj, jcomp)
+        )
+        merged |= old
+        comp_ids[list(old)] = cnew
+        del comps[cold]
+
+        if len(merged) == N:
+            print(np.prod(coords[[i, j], 0]))
+            break
