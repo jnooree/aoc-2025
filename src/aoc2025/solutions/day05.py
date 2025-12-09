@@ -16,7 +16,8 @@ def main(data: FileText):
     print(np.sum(fresh))
 
     ranges[:, 1] += 1
-    ranges = np.sort(ranges, axis=0)
+    idxs = np.lexsort(np.flip(ranges.T, axis=0))
+    ranges = ranges[idxs]
 
     merged = []
     current = range(*ranges[0])
